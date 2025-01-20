@@ -15,7 +15,7 @@ if [[ ! " ${DESIRED_NODE_VERSIONS[@]} " =~ " ${CURRENT_NODE_VERSION} " ]]; then
   echo "nodejs-mobile-react-native requires Node.js version 18 or 20 accessible from Xcode, but found \
 $(node -p 'process.versions.node')"
   exit 1
-fic
+fi
 
 if [ -z "$NODEJS_MOBILE_BUILD_NATIVE_MODULES" ]; then
 # If build native modules preference is not set, look for it in the project's
