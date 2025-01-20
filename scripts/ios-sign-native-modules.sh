@@ -8,14 +8,14 @@ if [ -f ./.xcode.env.local ]; then
   source "./.xcode.env.local";
 fi
 
-DESIRED_NODE_VERSION="18"
+DESIRED_NODE_VERSIONS=("18" "20")
 CURRENT_NODE_VERSION="$(node -p "process.versions.node.split('.')[0]")"
-if [ "$CURRENT_NODE_VERSION" -ne "$DESIRED_NODE_VERSION" ]; then
-  echo "nodejs-mobile-react-native's ios-build-native-modules script requires \
-Node.js version $DESIRED_NODE_VERSION, but found \
+
+if [[ ! " ${DESIRED_NODE_VERSIONS[@]} " =~ " ${CURRENT_NODE_VERSION} " ]]; then
+  echo "nodejs-mobile-react-native requires Node.js version 18 or 20 accessible from Xcode, but found \
 $(node -p 'process.versions.node')"
   exit 1
-fi
+fic
 
 if [ -z "$NODEJS_MOBILE_BUILD_NATIVE_MODULES" ]; then
 # If build native modules preference is not set, look for it in the project's
